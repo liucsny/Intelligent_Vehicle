@@ -38,7 +38,6 @@ let Vector = {
 
 class Vehicle{
 	constructor(x,y) {
-		this.name = name;
 		this.location = {
 			x:x,
 			y:y
