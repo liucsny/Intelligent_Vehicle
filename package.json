@@ -1,0 +1,22 @@
+{
+  "name": "intelligent_vehicle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Metrodata/Intelligent_Vehicle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Metrodata/Intelligent_Vehicle/issues"
+  },
+  "homepage": "https://github.com/Metrodata/Intelligent_Vehicle#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
