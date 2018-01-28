@@ -1,7 +1,8 @@
+import noise from "./perlin.js";
+
+Math.noise = noise;
+
 window.onload = function (){
-
-import sex from "./perlin.js";
-
 
 let outterWidth = 1000,
 	outterHeight = 800,
@@ -196,29 +197,59 @@ class Vehicle{
 
 class Field{
 	constructor(rsl){
+		this.m = 0;
+		this.n = 0;
+		this.range = 1;
 		this.resolution = rsl;
 		this.field = [];
 		this.cols = Math.round(innerWidth/this.resolution);
 		this.rows = Math.round(innerHeight/this.resolution);
 
+
+		this.fieldGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+		this.fieldGroup.setAttribute("class","field")
+
+
+
 		for (var i = 0; i<= this.cols; i++) {
 			this.field.push([])
 			for (var j = 0; j<= this.rows; j++) {
-				this.field[i].push({
+				let arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+				arrow.setAttribute("points","0,0 0,20 -5,15 0,20 5,15")
+
+				arrow.setAttribute("stroke","black");
+				arrow.setAttribute("stroke-width","1");
+				arrow.setAttribute("fill","none");
+				this.fieldGroup.appendChild(arrow);
+
+
+				let fieldVector = {
 					// x : 1,
 					// y : 1
-					x : Math.random()*2-0.8,
-					y : Math.random()*2-0.8
-				})
+					x : Math.noise((this.m,this.n)*this.range+j)*10-5,
+					y : Math.noise((this.m,this.n)*this.range+j)*10-5,
+					get theta(){
+				    return Vector.heading(this)
+				  }
+				};
+				this.field[i].push(fieldVector)
+				arrow.setAttribute("transform", "translate("+ i*this.resolution +","+ j*this.resolution +")rotate(" + fieldVector.theta + ")");
+
 			}
 		}
+
+		g.appendChild(this.fieldGroup);
+
 	}
 
 	update(){
+		this.m++;
+		this.n++;
+
 		for (var i = 0 ; i <= this.field.length - 1; i++) {
 			for (var j = 0 ; j <= this.field[i].length - 1; j++) {
-				this.field[i][j].x += (Math.random()-0.5)*0.3;
-				this.field[i][j].y += (Math.random()-0.5)*0.3;
+				this.field[i][j].x += (Math.noise((this.m+201,this.n+53)*this.range)-0.5)*0.3;
+				this.field[i][j].y += (Math.noise((this.m+45,this.n+64)*this.range)-0.5)*0.3;
 				// console.log(this.field[i][j].x)
 			}
 		}
@@ -258,9 +289,8 @@ class Field{
 
 }
 
-
 let v = []
-for (var i = 0; i <= 300 ; i++) {
+for (var i = 0; i <= 0 ; i++) {
  	v.push(new Vehicle(Math.random()*innerWidth,Math.random()*innerHeight,Math.random()*5+3))
  };
 
@@ -273,12 +303,15 @@ let flowField = new Field(50)
 // 	c.save();
 // 	c.translate(margin.left,margin.top);
 //
-// 	// flowField.display();
+	// flowField.display();
+
+
 
 	for (var i = v.length - 1; i >= 0; i--) {
 		v[i].display();
 		v[i].followFeild(flowField);
 	}
+
 // 	c.restore();
 //
 // 	// console.log("now");
