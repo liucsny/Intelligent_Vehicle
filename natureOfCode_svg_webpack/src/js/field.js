@@ -22,8 +22,8 @@ export default class Field {
         let fieldVector = {
           x : j,
           y : i,
-          theta: Noise(i/this.turbulence,j/this.turbulence)*Math.PI*2 - 3/2*Math.PI,
-          // theta: Math.PI,
+          theta: Noise(i/this.turbulence,j/this.turbulence)*Math.PI*2,
+          // theta:0,
           body: document.createElementNS('http://www.w3.org/2000/svg', 'polyline'),
         };
 
