@@ -85,7 +85,7 @@ class Vehicle{
 			x:0,
 			y:0
 		};
-		this.maxspeed = 2;
+		this.maxspeed = 10;
 		this.r = m;
 		this.mass = 1;
 

@@ -35,17 +35,17 @@ svg.addEventListener('mousemove', function(e) {
 
 
 let v = []
-for (var i = 0; i <= 300 ; i++) {
- 	v.push(new Vehicle(Math.random()*innerWidth,Math.random()*innerHeight,Math.random()*5+3,g,innerWidth,innerHeight))
+for (var i = 0; i <= 600 ; i++) {
+ 	v.push(new Vehicle(Math.random()*innerWidth,Math.random()*innerHeight,Math.random()*2+2,g,innerWidth,innerHeight))
  };
 
 let field = new Field(30,g,innerWidth,innerHeight)
 
 ;(function animate(){
-  for (var i = v.length - 1; i >= 0; i--) {
-		v[i].followFeild(field);
-		v[i].update();
-	}
+		v.forEach(function(vehicle){
+      vehicle.followFeild(field);
+      vehicle.update();
+    })
   field.update()
 
 	requestAnimationFrame(animate);

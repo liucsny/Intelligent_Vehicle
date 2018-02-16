@@ -20,7 +20,7 @@ export default class Vehicle {
     this.innerWidth = innerWidth;
     this.innerHeight = innerHeight;
 
-		this.maxspeed = 20;
+		this.maxspeed = 6;
 		this.r = m;
 		this.mass = 1;
 

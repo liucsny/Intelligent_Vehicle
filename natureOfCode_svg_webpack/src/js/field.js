@@ -28,12 +28,12 @@ export default class Field {
         };
 
         fieldVector.body.setAttribute("points","-10,0 10,0 7,-2 10,0 7,2")
-        fieldVector.body.setAttribute("stroke","rgba(0,0,0,.5)");
+        fieldVector.body.setAttribute("stroke","rgba(0,0,0,0.2)");
         fieldVector.body.setAttribute("stroke-width","1");
         fieldVector.body.setAttribute("fill","none");
 
         this.field[i].push(fieldVector)
-        fieldVector.body.setAttribute("transform", "translate("+ fieldVector.y*this.resolution +","+ fieldVector.x*this.resolution +")rotate(" + (fieldVector.theta/(Math.PI*2)*360) + ")");
+        fieldVector.body.setAttribute("transform", "translate("+ fieldVector.y*this.resolution +","+ fieldVector.x*this.resolution +")rotate(" + (fieldVector.theta/(Math.PI*2)*540) + ")");
         this.fieldGroup.appendChild(fieldVector.body);
       }
     }
